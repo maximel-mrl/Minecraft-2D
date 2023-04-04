@@ -18,24 +18,25 @@ block.grass.src = "./texture/grass.jpg"
 const world = {
     translateX: -80,
     blockPos: 0,
-    dir: 0
+    dir: 0,
+    curve: {
+        a: ((block.vCount-1)/2)*block.s, // height of the curves;
+        f: Math.random() * 0.15 + 0.03, // how far apart the peaks are;
+        inferings: [
+            Math.random() * 0.3 + 0.25,
+            Math.random() * 0.3 + 0.25,
+            Math.random() * 0.3 + 0.25,
+            Math.random() * 0.3 + 0.25
+        ]
+    },
+    grassSeed: Math.round(Math.random() * 50),
 }
 
-let curve = {
-    a: ((block.vCount-1)/2)*block.s, // height of the curves;
-    f: Math.random() * 0.15 + 0.03, // how far apart the peaks are;
-}
-let inferings =  [
-    Math.random() * 0.3 + 0.25,
-    Math.random() * 0.3 + 0.25,
-    Math.random() * 0.3 + 0.25,
-    Math.random() * 0.3 + 0.25
-];
 let lastTime = 0;
 window.onload = () => {
     block["imgS"] = block.dirt.naturalWidth
     updateFg(world.translateX, world.blockPos)
-    let lastTime = Date.now();
+    lastTime = Date.now();
     update()
 }
 
@@ -73,8 +74,8 @@ function updateFg(offset, pos) {
     ctx.save()
     ctx.translate(offset, -block.s) // get to th bottom of block
     for (let i = 0; i < canvas.width/block.s*2 + block.s; i++) {
-        // generation of terrain
-        let hPos = rndTerrain(i+pos)
+        // BLOCK
+        let hPos = Math.round((sinRnd(i+pos) + 1)* block.vCount * 0.5);
         for (let y = 0; y < hPos; y++) {
             drawBlock(block.dirt, i*block.s, canvas.height-y*block.s)
         }
@@ -83,13 +84,13 @@ function updateFg(offset, pos) {
     ctx.restore()
 }
 
-function rndTerrain(i) {
-    let weight = inferings.length+1;
-    let hPos =  (Math.sin(curve.f*i) * curve.a + curve.a)/weight
-    inferings.forEach(infering => {
-        hPos += (Math.sin(infering*i) * curve.a + curve.a)/weight
+function sinRnd(i) {
+    let weight = world.curve.inferings.length+1;
+    let hPos =  (Math.sin(world.curve.f*i))/weight
+    world.curve.inferings.forEach(infering => {
+        hPos += (Math.sin(infering*i))/weight
     })
-    return Math.round(hPos/(block.s));
+    return hPos;
 }
 
 document.addEventListener("keydown", ({key}) => {
@@ -110,9 +111,11 @@ document.addEventListener("keyup", ({key}) => {
 // test terrain generation to make sure it's good
 let message = "succes"
 let min = 100;
+let max = 0;
 for (let u = 0; u < 10000; u++) {
-    rnd = rndTerrain(u);
+    rnd = Math.round((sinRnd(u) + 1)* block.vCount * 0.5);
     if (rnd > block.vCount) message = "error"
     if (rnd < min) min = rnd
+    if (rnd > max) max = rnd
 }
-console.log(message + min)
+console.log(`${message} min: ${min} max: ${max}`)
