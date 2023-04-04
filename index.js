@@ -14,8 +14,9 @@ block.dirt.src = "./texture/dirt.jpg"
 block.grass.src = "./texture/grass.jpg"
 
 const world = {
-    translateX: 0,
+    translateX: -80,
     blockPos: 0,
+    dir: 0
 }
 
 let curve = {
@@ -44,16 +45,16 @@ function update() {
 let lastTime = Date.now();
 
 function updateBlocks(delay) {
-    world.translateX -= 300*delay;
-    if (world.translateX < -1* block.s) {
+    world.translateX -= 500*delay*world.dir;
+    if (world.translateX < -5* block.s) {
         world.translateX += block.s;
         world.blockPos++
-        console.log(world.translateX)
-        console.log(world.blockPos)
+    }
+    if (world.translateX > -1* block.s) {
+        world.translateX -= block.s;
+        world.blockPos--
     }
     updateFg(world.translateX, world.blockPos)
-    // console.log(world.translateX)
-
 }
 
 function drawBlock(img, x, y, mul=1) {
@@ -77,3 +78,17 @@ function updateFg(offset, pos) {
     }
     ctx.restore()
 }
+
+document.addEventListener("keydown", ({key}) => {
+    switch (key) {
+        case "ArrowRight":
+            world.dir = 1;
+            break;
+        case "ArrowLeft":
+            world.dir = -1;
+            break;
+    }
+})
+document.addEventListener("keyup", ({key}) => {
+    world.dir = 0;
+})
