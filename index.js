@@ -20,14 +20,9 @@ const world = {
 
 let curve = {
     a: ((block.vCount-1)/2)*block.s, // height of the curves;
-    f: Math.random() * 0.02 + 0.002, // how far apart the peaks are;
-    p: Math.random() * 250, // move the curve left / right
+    f: Math.random() * 0.15 + 0.03, // how far apart the peaks are;
 }
-let infering = {
-    f: Math.random() * 0.02 + 0.002,
-    p: Math.random() * 250,
-};
-
+let infering =  Math.random() * 0.1 + 0.012;
 
 window.onload = () => {
     block["imgS"] = block.dirt.naturalWidth
@@ -49,7 +44,7 @@ function update() {
 let lastTime = Date.now();
 
 function updateBlocks(delay) {
-    world.translateX -= 30*delay;
+    world.translateX -= 300*delay;
     if (world.translateX < -1* block.s) {
         world.translateX += block.s;
         world.blockPos++
@@ -68,10 +63,11 @@ function drawBlock(img, x, y, mul=1) {
 
 function updateFg(offset, pos) {
     ctx.save()
-    ctx.translate(0, -block.s) // get to th bottom of block
+    ctx.translate(offset, -block.s) // get to th bottom of block
     for (let i = 0; i < canvas.width/block.s*2 + block.s; i++) {
         // generation of terrain
-        let hPos = (Math.sin(curve.f*((i+pos)*block.s/2 + curve.p)) * curve.a + curve.a)
+        let hPos =  (Math.sin(curve.f*(i+pos)) * curve.a + curve.a)/2
+        hPos += (Math.sin(infering*(i+pos)) * curve.a + curve.a)/2
         hPos = Math.round(hPos/(block.s))
 
         for (let y = 0; y < hPos; y++) {
