@@ -1,3 +1,5 @@
+import { sinRnd, drawBlock } from "./utils.js";
+
 export function plainGeneration(i, hPos, pos) {
     let dirtHeight = Math.round((sinRnd((i+pos)*world.stoneSeed) + 2));
     // stone
@@ -5,12 +7,12 @@ export function plainGeneration(i, hPos, pos) {
     if (hPos > dirtHeight) {
         while (y < hPos - dirtHeight) { 
             drawBlock(block.stone, i*block.s, canvas.height-y*block.s)
-            y++
+            y++;
         }
     }
     while (y < hPos) { // dirt
         drawBlock(block.dirt, i*block.s, canvas.height-y*block.s)
-        y++
+        y++;
     }
     // grass
     drawBlock(block.grass, i*block.s, canvas.height-hPos*block.s)
@@ -30,19 +32,19 @@ export function plainGeneration(i, hPos, pos) {
 
 export function desertGeneration(i, hPos, pos) {
     let sandHeight = Math.round((sinRnd((i+pos)*world.stoneSeed) + 4));
-    hPos = Math.round(hPos * 0.75 + block.vCount *0.25)
+    hPos = Math.round(hPos * 0.75 + block.vCount *0.25);
     let y = 0;
-    if (hPos > sandHeight) {
+    if (hPos > sandHeight) { // sandstone
         while (y < hPos - sandHeight) { 
             drawBlock(block.sandStone, i*block.s, canvas.height-y*block.s)
-            y++
+            y++;
         }
     }
-    while (y < hPos) { // dirt
+    while (y < hPos) { // sand
         drawBlock(block.sand, i*block.s, canvas.height-y*block.s)
-        y++
+        y++;
     }
-    if (sinRnd((i+pos) * world.grassSeed) > 0.5) {
+    if (sinRnd((i+pos) * world.grassSeed) > 0.5) { // cactus
         for (let z = 0; z <= Math.round(sinRnd((i+pos) * world.grassSeed + 2)*2.5); z++) {
             drawBlock(block.cactus, i*block.s, canvas.height-(hPos+z)*block.s)
         }

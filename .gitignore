@@ -1,2 +1,2 @@
-./tests.js
-./texture/mc.psd
+tests.js
+*.psd

@@ -33,3 +33,17 @@ for (let y = 0; y < canvas.width*10; y++) {
     ctx.fillStyle = "blue"
     ctx.fillRect(i, canvas.height/2, 1, 1)
 }
+
+
+
+// test terrain generation to make sure it's good (TEMP)
+let message = "succes"
+let min = 100;
+let max = 0;
+for (let u = 0; u < 10000; u++) {
+    let rnd = Math.round((sinRnd(u) + 1)* block.vCount * 0.5);
+    if (rnd > block.vCount) message = "error"
+    if (rnd < min) min = rnd
+    if (rnd > max) max = rnd
+}
+console.log(`${message} min: ${min} max: ${max}`)
