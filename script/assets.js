@@ -39,4 +39,9 @@ export default [
         src: "./texture/cactus.png",
         type: "img"
     },
+    {
+        name: "deadBush",
+        src: "./texture/deadbush.png",
+        type: "img"
+    },
 ]

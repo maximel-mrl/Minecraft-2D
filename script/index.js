@@ -9,7 +9,7 @@ window.canvas = document.createElement("canvas");
 window.ctx = canvas.getContext("2d");
 
 window.block = { s: 30, }
-block["vCount"] = Math.round((canvas.height/block.s)*0.4);
+block["vCount"] = Math.round((canvas.height/block.s)*0.55);
 assets.forEach((asset) => { // load all assets
     switch (asset.type) {
         case "img":
@@ -52,6 +52,11 @@ window.onload = () => {
     update()
 }
 
+window.onresize = () => {
+    canvas.width = document.body.clientWidth;
+    canvas.height = document.body.clientHeight;
+}
+
 document.addEventListener("keydown", ({key}) => {
     switch (key) {
         case "ArrowRight":
@@ -65,4 +70,5 @@ document.addEventListener("keydown", ({key}) => {
 document.addEventListener("keyup", () => {
     world.dir = 0;
 })
+
 
