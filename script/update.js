@@ -21,23 +21,39 @@ export function update() {
 function updateHero(hPos, delay) {
     ctx.fillStyle = "green";
     //horizontal movement
-    if (hero.movment == "left") {
-        if (hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 > hero.y) return; // block movement if hit block
-        if (hero.x > 4) {
-            hero.x -= hero.speed*delay
-        } else {
-            world.translateX += hero.speed*delay*block.s
-        }
-
-    } else if (hero.movment == "right") {
-        if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 > hero.y) return; // block movement if hit block
-        if (hero.x < 15) {
-            hero.x += hero.speed*delay
-        } else {
-            world.translateX -= hero.speed*delay*block.s
+    switch (hero.movment) {
+        case "left":
+            if (hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 > hero.y) break; // block movement if hit block
+            if (hero.x > 4) {
+                hero.x -= hero.hSpeed*delay
+            } else {
+                world.translateX += hero.hSpeed*delay*block.s
+            }
+            break;
+        case "right":
+            if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 > hero.y) break; // block movement if hit block
+            if (hero.x < 15) {
+                hero.x += hero.hSpeed*delay
+            } else {
+                world.translateX -= hero.hSpeed*delay*block.s
+            }
+            break;
+    }
+    if (hero.jump && !hero.jumping) {
+        hero.jump = false;
+        hero.jumping = true;
+        hero.vSpeed += hero.vAcc
+    }
+    if (hero.jumping) {
+        hero.vSpeed -= 40*delay
+        hero.y += hero.vSpeed*delay
+        if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 >= hero.y && hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 >= hero.y) { // fall
+            hero.jumping = false;
+            hero.vSpeed = 0
+            hero.y = hPos[Math.round(Math.abs(world.translateX/block.s) + hero.x)] + 1
         }
     }
-    if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 < hero.y && hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 < hero.y) { // fall
+    if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 < hero.y && hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 < hero.y && !hero.jumping) { // fall
         hero.y--
     }
     if (hero.y == 0) {

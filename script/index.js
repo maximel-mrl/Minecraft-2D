@@ -50,8 +50,12 @@ window.world = {
 window.hero = {
     x: 5,
     y: 0,
-    speed: 8,
+    hSpeed: 8,
+    vSpeed: 0,
+    vAcc: 10,
     movment: false,
+    jump: false,
+    jumping: false,
 }
 
 window.onload = () => {
@@ -71,6 +75,9 @@ document.addEventListener("keydown", ({key}) => {
             break;
         case "ArrowLeft":
             hero.movment = "left";
+            break;
+        case "ArrowUp":
+            hero.jump = true;
             break;
     }
 })
