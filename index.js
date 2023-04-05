@@ -33,12 +33,14 @@ const world = {
     dir: 0,
     curve: {
         a: ((block.vCount-1)/2)*block.s, // height of the curves;
-        f: Math.random() * 0.15 + 0.03, // how far apart the peaks are;
+        f: Math.random() * 0.1 + 0.2, // how far apart the peaks are;
         inferings: [
-            Math.random() * 0.3 + 0.25,
-            Math.random() * 0.3 + 0.25,
-            Math.random() * 0.3 + 0.25,
-            Math.random() * 0.3 + 0.25
+            Math.random() * 0.08 + 0.15,
+            Math.random() * 0.08 + 0.15,
+            Math.random() * 0.08 + 0.15,
+            Math.random() * 0.08 + 0.15,
+            Math.random() * 0.08 + 0.15,
+            Math.random() * 0.08 + 0.15,
         ]
     },
     stoneSeed: Math.random() * 20,
@@ -83,10 +85,6 @@ function drawBlock(img, x, y, Ymul=1) {
     ctx.drawImage(img, 0, 0, block.imgS, block.imgS, x, y + (1-Ymul)*block.s, block.s, block.s*Ymul);
     // draw image full: imgSRC, imgcropStart x-y, imgcropEnd x-y, posX, posY, SizeX, sizeY  
 }
-let biome
-setInterval(() => {
-    console.log(world)
-},500)
 function updateFg(offset, pos) {
     ctx.save()
     ctx.translate(offset, -block.s) // get to th bottom of block
@@ -174,6 +172,14 @@ function desertGeneration(i, hPos, pos) {
         for (let z = 0; z <= Math.round(sinRnd((i+pos) * world.grassSeed + 2)*2.5); z++) {
             drawBlock(block.cactus, i*block.s, canvas.height-(hPos+z)*block.s)
         }
+    }
+    // water
+    for (let y = hPos; y < block.vCount/2; y++) {
+        ctx.clearRect(i*block.s, canvas.height-(y+9)*block.s, block.s, block.s*10) // remove grass if necessary
+        if (y + 1 < block.vCount/2) {
+            drawBlock(block.water, i*block.s, canvas.height-y*block.s)
+        }
+        drawBlock(block.water, i*block.s, canvas.height-y*block.s, 0.8)
     }
 }
 
