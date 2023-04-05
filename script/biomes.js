@@ -22,6 +22,7 @@ export function plainGeneration(i, hPos, pos) {
     }
     // water
     water(hPos, i)
+    return hPos;
 }
 
 export function desertGeneration(i, hPos, pos) {
@@ -54,6 +55,7 @@ export function desertGeneration(i, hPos, pos) {
     }
     // water
     water(hPos-1, i)
+    return hPos-1;
 }
 
 

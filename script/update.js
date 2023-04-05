@@ -1,6 +1,9 @@
 import { plainGeneration, desertGeneration } from "./biomes.js"
 import { sinRnd } from "./utils.js";
-
+window.hpos = [];
+setInterval(() => {
+    console.log(hpos)
+}, 500);
 let lastTime = Date.now();
 export function update() {
     let delay = (Date.now() - lastTime)/1000;
@@ -8,10 +11,41 @@ export function update() {
     ctx.clearRect(0,0,canvas.width,canvas.height)
     ctx.save()
     updateClouds(delay)
-    updatePos(delay)
+    let hPos = updatePos(delay)
 
+    updateHero(hPos, delay)
     ctx.restore()
     requestAnimationFrame(update)
+}
+
+function updateHero(hPos, delay) {
+    ctx.fillStyle = "green";
+    //horizontal movement
+    if (hero.movment == "left") {
+        if (hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 > hero.y) return; // block movement if hit block
+        if (hero.x > 4) {
+            hero.x -= hero.speed*delay
+        } else {
+            world.translateX += hero.speed*delay*block.s
+        }
+
+    } else if (hero.movment == "right") {
+        if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 > hero.y) return; // block movement if hit block
+        if (hero.x < 15) {
+            hero.x += hero.speed*delay
+        } else {
+            world.translateX -= hero.speed*delay*block.s
+        }
+    }
+    if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 < hero.y && hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 < hero.y) { // fall
+        hero.y--
+    }
+    if (hero.y == 0) {
+        hero.y = hPos[Math.round(Math.abs(world.translateX/block.s) + hero.x)] + 1
+    }
+    let x = hero.x*block.s - world.translateX;
+    let y = canvas.height-hero.y*block.s;
+    ctx.fillRect(x, y, block.s, block.s)
 }
 
 function updatePos(delay) {
@@ -24,7 +58,7 @@ function updatePos(delay) {
         world.translateX -= block.s;
         world.blockPos--
     }
-    updateBlocks(world.translateX, world.blockPos)
+    return updateBlocks(world.translateX, world.blockPos)
 }
 function updateClouds(delay) {
     world.cloudTranslate += 10*delay;
@@ -36,15 +70,16 @@ function updateClouds(delay) {
 
 function updateBlocks(offset, pos) {
     ctx.translate(offset, -block.s) // get to th bottom of block
+    let heights = []
     for (let i = 0; i < canvas.width/block.s*2 + block.s; i++) {
 
         let hPos = Math.round((sinRnd(i+pos) + 1)* block.vCount * 0.5); // get height of generation
 
         let biome = sinRnd((i+pos)*world.biomeSeed); // defines biome
         if (biome >= 0) {
-            plainGeneration(i, hPos, pos)
+            hPos = plainGeneration(i, hPos, pos)
         } else {
-            desertGeneration(i, hPos, pos, biome)
+            hPos = desertGeneration(i, hPos, pos, biome)
         }
         let clouds = sinRnd((i+pos+world.cloudPos)*world.cloudSeed);
         if (clouds > 0.2) {
@@ -62,5 +97,7 @@ function updateBlocks(offset, pos) {
                 }
             }
         }
+        heights.push(hPos);
     }
+    return heights;
 }

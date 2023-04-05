@@ -22,7 +22,7 @@ assets.forEach((asset) => { // load all assets
 })
 
 window.world = {
-    translateX: -80,
+    translateX: 0,
     blockPos: 0,
     dir: 0,
     cloudTranslate: -120,
@@ -47,6 +47,13 @@ window.world = {
     cloudSeed: Math.random() * 0.25 + 0.5,
 }
 
+window.hero = {
+    x: 5,
+    y: 0,
+    speed: 8,
+    movment: false,
+}
+
 window.onload = () => {
     block["imgS"] = block.dirt.naturalWidth;
     update()
@@ -60,15 +67,24 @@ window.onresize = () => {
 document.addEventListener("keydown", ({key}) => {
     switch (key) {
         case "ArrowRight":
-            world.dir = 1;
+            hero.movment = "right";
             break;
         case "ArrowLeft":
-            world.dir = -1;
+            hero.movment = "left";
             break;
     }
 })
-document.addEventListener("keyup", () => {
-    world.dir = 0;
+document.addEventListener("keyup", ({key}) => {
+    switch (key) {
+        case "ArrowRight":
+            if (hero.movment != "right") return;
+            hero.movment = false; 
+            break;
+        case "ArrowLeft":
+            if (hero.movment != "left") return;
+            hero.movment = false; 
+            break;
+    }
 })
 
 
