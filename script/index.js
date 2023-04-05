@@ -4,7 +4,7 @@ import { update } from "./update.js";
 
 window.canvas = document.createElement("canvas");
     canvas.width = document.body.clientWidth;
-    canvas.height = canvas.width/2;
+    canvas.height = document.body.clientHeight;
     document.body.appendChild(canvas);
 window.ctx = canvas.getContext("2d");
 
@@ -37,7 +37,9 @@ window.world = {
             Math.random() * 0.08 + 0.15,
             Math.random() * 0.08 + 0.15,
             Math.random() * 0.08 + 0.15,
-        ]
+        ],
+        o: Math.random()*500, // starting offset
+        o2: Math.random()*500
     },
     stoneSeed: Math.random() * 20,
     grassSeed: Math.random() * 5 + 10,

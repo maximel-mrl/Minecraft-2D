@@ -13,7 +13,9 @@ const curve = {
         Math.random() * 0.3 + 0.25,
         Math.random() * 0.3 + 0.25,
         Math.random() * 0.3 + 0.25
-    ]
+    ],
+    o: Math.random()*500, // starting offset
+    o2: Math.random()*200
 }
 
 console.log(canvas.width)
@@ -22,9 +24,9 @@ for (let y = 0; y < canvas.width*10; y++) {
     i = y/10
     let weight = curve.inferings.length+1;
     // generation of terrain
-    let hPos =  (Math.sin(curve.f*i) * curve.a)/weight
-    curve.inferings.forEach(infering => {
-        hPos += (Math.sin(infering*i) * curve.a)/weight
+    let hPos =  (Math.sin(curve.f*i + curve.o) * curve.a)/weight
+    curve.inferings.forEach((infering,m) => {
+        hPos += (Math.sin(infering*i + (curve.o2*m)) * curve.a)/weight
     })
     hPos = hPos + canvas.height/2 - curve.a
 
@@ -37,13 +39,13 @@ for (let y = 0; y < canvas.width*10; y++) {
 
 
 // test terrain generation to make sure it's good (TEMP)
-let message = "succes"
-let min = 100;
-let max = 0;
-for (let u = 0; u < 10000; u++) {
-    let rnd = Math.round((sinRnd(u) + 1)* block.vCount * 0.5);
-    if (rnd > block.vCount) message = "error"
-    if (rnd < min) min = rnd
-    if (rnd > max) max = rnd
-}
-console.log(`${message} min: ${min} max: ${max}`)
+// let message = "succes"
+// let min = 100;
+// let max = 0;
+// for (let u = 0; u < 10000; u++) {
+//     let rnd = Math.round((sinRnd(u) + 1)* block.vCount * 0.5);
+//     if (rnd > block.vCount) message = "error"
+//     if (rnd < min) min = rnd
+//     if (rnd > max) max = rnd
+// }
+// console.log(`${message} min: ${min} max: ${max}`)
