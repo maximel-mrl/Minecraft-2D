@@ -8,7 +8,7 @@ window.canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
 window.ctx = canvas.getContext("2d");
 
-window.block = { s: 30, }
+window.block = { s: 35, }
 block["vCount"] = Math.round((canvas.height/block.s)*0.55);
 assets.forEach((asset) => { // load all assets
     switch (asset.type) {
@@ -22,11 +22,14 @@ assets.forEach((asset) => { // load all assets
 })
 
 window.world = {
+    g: 75,
+
     translateX: 0,
     blockPos: 0,
-    dir: 0,
     cloudTranslate: -120,
     cloudPos: 0,
+    waterHeight: block.vCount/2,
+
     curve: {
         a: ((block.vCount-1)/2)*block.s, // height of the curves;
         f: Math.random() * 0.1 + 0.2, // how far apart the peaks are;
@@ -50,13 +53,14 @@ window.world = {
 window.hero = {
     x: 5,
     y: 0,
-    hSpeed: 8,
+    hSpeed: 10,
     vSpeed: 0,
-    vAcc: 10,
+    jSpeed: (2*world.g*1.2)**0.5, // want to be abble to jump 1.1 block what initial speed should go? acoording to rdn dude v = (2gh)**0.5  so just apply
     movment: false,
-    jump: false,
+    jump: true, // jump at start so it initialize Y
     jumping: false,
 }
+console.log((2*world.g*block.s*1.2)**0.5)
 
 window.onload = () => {
     block["imgS"] = block.dirt.naturalWidth;

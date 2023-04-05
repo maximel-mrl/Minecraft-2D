@@ -44,4 +44,9 @@ export default [
         src: "./texture/deadbush.png",
         type: "img"
     },
+    {
+        name: "hero",
+        src: "./texture/derp.jpg",
+        type: "img"
+    },
 ]

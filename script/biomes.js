@@ -61,9 +61,9 @@ export function desertGeneration(i, hPos, pos) {
 
 
 function water(hPos, i) {
-    for (let y = hPos + 1; y < block.vCount/2; y++) {
+    for (let y = hPos + 1; y < world.waterHeight; y++) {
         ctx.clearRect(i*block.s, canvas.height-(y+9)*block.s, block.s, block.s*10) // remove blocks if necessary
-        if (y + 1 < block.vCount/2) {
+        if (y + 1 < world.waterHeight) {
             drawBlock(block.water, i*block.s, canvas.height-y*block.s)
         }
         drawBlock(block.water, i*block.s, canvas.height-y*block.s, 0.8)
