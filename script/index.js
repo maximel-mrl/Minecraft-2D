@@ -3,6 +3,7 @@ import { update } from "./update.js";
 import { toFloatRange } from "./utils.js";
 
 let seed = setSeed();
+console.log(`%cSeed: ${seed}`,  "font-weight: bold; font-size: 16px")
 
 window.canvas = document.createElement("canvas");
     canvas.width = document.body.clientWidth;
@@ -10,8 +11,8 @@ window.canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
 window.ctx = canvas.getContext("2d");
 
-window.block = { s: 35, }
-block["vCount"] = Math.round((canvas.height/block.s)*0.55);
+window.block = { vCount: 12, }
+block["s"] = (canvas.height*0.55)/block.vCount;
 assets.forEach((asset) => { // load all assets
     switch (asset.type) {
         case "img":
@@ -22,6 +23,7 @@ assets.forEach((asset) => { // load all assets
             console.error("asset not recognized -> not imported");
     }
 })
+console.log(block.s)
 
 window.world = {
     g: 75,
@@ -55,9 +57,9 @@ window.world = {
 window.hero = {
     x: 5,
     y: 0,
-    hSpeed: 10,
+    hSpeed: world.g*0.14,
     vSpeed: 0,
-    jSpeed: (2*world.g*1.2)**0.5, // want to be abble to jump 1.1 block what initial speed should go? acoording to rdn dude v = (2gh)**0.5  so just apply
+    jSpeed: (2*world.g*1.25)**0.5, // want to be abble to jump 1.1 block what initial speed should go? acoording to rdn dude v = (2gh)**0.5  so just apply
     movment: false,
     jump: true, // jump at start so it initialize Y
     jumping: false,
@@ -75,7 +77,6 @@ window.onresize = () => {
 
 function setSeed() {
     let definedSeed = parseInt(window.location.href.split("?seed=")[1])
-    console.log(definedSeed)
     if (definedSeed && definedSeed != 0) return definedSeed
     return Math.round(Math.random()*(10**15))
 }
