@@ -1,6 +1,7 @@
 import { plainGeneration, desertGeneration } from "./biomes.js"
 import { sinRnd } from "./utils.js";
 import updateHero from "./hero.js"
+import updateMonsters from "./monsters.js"
 let lastTime = Date.now();
 
 export function update() {
@@ -12,6 +13,7 @@ export function update() {
     let hPos = updatePos()
 
     updateHero(hPos, delay)
+    updateMonsters(hPos)
     ctx.restore()
     requestAnimationFrame(update)
 }
