@@ -13,7 +13,7 @@ export function update() {
     let hPos = updatePos()
 
     updateHero(hPos, delay)
-    updateMonsters(hPos)
+    updateMonsters(hPos, delay)
     ctx.restore()
     requestAnimationFrame(update)
 }

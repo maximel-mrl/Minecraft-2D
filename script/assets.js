@@ -49,4 +49,9 @@ export default [
         src: "./texture/derp.jpg",
         type: "img"
     },
+    {
+        name: "monster",
+        src: "./texture/creeper.jpg",
+        type: "img"
+    },
 ]

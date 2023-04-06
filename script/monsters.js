@@ -1,16 +1,25 @@
+import { drawBlock } from "./utils.js";
 let monsters = []
-for (let i = 0; i < 50; i++) {
-    monsters.push(Math.round(Math.random()*1000))
+for (let i = -50; i < 50; i++) {
+    let y = i == 0 ? Math.round(Math.random()*50) : i
+    monsters.push({
+        x: Math.round((Math.random()*15+8)*y),
+        speed: Math.random() >= 0.5 ?  Math.round(Math.random()*2.5 + 0.5) : -1 * Math.round(Math.random()*2.5 + 0.5),
+        pos: 0,
+    })
 }
 console.log(monsters)
 
 
-export default function updateMonsters(hPos) {
+export default function updateMonsters(hPos, delay) {
     monsters.forEach(monster => {
-        let x = (monster - world.blockPos)*block.s;
-        let xcol = Math.round(Math.round(x/block.s))
+        if (monster.pos > 3 || monster.pos < -3) {
+            monster.speed = -monster.speed
+        }
+        monster.pos += monster.speed*delay
+        let x = (monster.x + monster.pos - world.blockPos);
+        let xcol= Math.round(x)
         let y = canvas.height - (hPos[xcol] + 1) * block.s;
-        ctx.fillStyle = "red"
-        ctx.fillRect(x, y, block.s, block.s)
+        drawBlock(block.monster, x*block.s, y)
     })
 }
