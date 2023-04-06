@@ -1,6 +1,8 @@
-import "./utils.js";
 import assets from "./assets.js";
 import { update } from "./update.js";
+import { toFloatRange } from "./utils.js";
+
+let seed = setSeed();
 
 window.canvas = document.createElement("canvas");
     canvas.width = document.body.clientWidth;
@@ -32,22 +34,22 @@ window.world = {
 
     curve: {
         a: ((block.vCount-1)/2)*block.s, // height of the curves;
-        f: Math.random() * 0.1 + 0.2, // how far apart the peaks are;
+        f: toFloatRange(seed) * 0.1 + 0.2, // how far apart the peaks are;
         inferings: [
-            Math.random() * 0.08 + 0.15,
-            Math.random() * 0.08 + 0.15,
-            Math.random() * 0.08 + 0.15,
-            Math.random() * 0.08 + 0.15,
-            Math.random() * 0.08 + 0.15,
-            Math.random() * 0.08 + 0.15,
+            toFloatRange((seed%89)*10) * 0.08 + 0.15,
+            toFloatRange((seed%48)*10) * 0.08 + 0.15,
+            toFloatRange((seed%11)*10) * 0.08 + 0.15,
+            toFloatRange((seed%158)*18) * 0.08 + 0.15,
+            toFloatRange((seed%23)*10) * 0.08 + 0.15,
+            toFloatRange((seed%189)*35) * 0.08 + 0.15,
         ],
-        o: Math.random()*500, // starting offset
-        o2: Math.random()*500
+        o:  toFloatRange((seed%789)*seed)*500, // starting offset
+        o2: toFloatRange((seed%129)*seed)*500
     },
-    stoneSeed: Math.random() * 20,
-    grassSeed: Math.random() * 5 + 10,
-    biomeSeed: Math.random() * 0.01 + 0.05,
-    cloudSeed: Math.random() * 0.25 + 0.5,
+    stoneSeed: toFloatRange((seed%789)*seed) * 20,
+    grassSeed: toFloatRange((seed%79)*seed) * 5 + 10,
+    biomeSeed: toFloatRange((seed%89)*seed) * 0.01 + 0.05,
+    cloudSeed: toFloatRange((seed%759)*seed) * 0.25 + 0.5,
 }
 
 window.hero = {
@@ -60,7 +62,6 @@ window.hero = {
     jump: true, // jump at start so it initialize Y
     jumping: false,
 }
-console.log((2*world.g*block.s*1.2)**0.5)
 
 window.onload = () => {
     block["imgS"] = block.dirt.naturalWidth;
@@ -70,6 +71,13 @@ window.onload = () => {
 window.onresize = () => {
     canvas.width = document.body.clientWidth;
     canvas.height = document.body.clientHeight;
+}
+
+function setSeed() {
+    let definedSeed = parseInt(window.location.href.split("?seed=")[1])
+    console.log(definedSeed)
+    if (definedSeed && definedSeed != 0) return definedSeed
+    return Math.round(Math.random()*(10**15))
 }
 
 document.addEventListener("keydown", ({key}) => {

@@ -13,17 +13,22 @@ export function drawBlock(img, x, y, Ymul=1) {
     // draw image full: imgSRC, imgcropStart x-y, imgcropEnd x-y, posX, posY, SizeX, sizeY  
 }
 
+export function toFloatRange(number) {
+    number = number*(10**10) > 10**20 ? number : number*(10**10) // if number to big (return as something e+ something) this function return 0.one digit so make sure number is never to big
+    return (parseFloat(`0.${Math.round(number)}`))
+}
 
 // test terrain generation to make sure it's good (TEMP)
-let message = "succes"
+export function test(rndFunction, vMax) {
+    
 let min = 100;
 let max = 0;
 window.test = () => {
     for (let u = 0; u < 100000; u++) {
-        let rnd = Math.round((sinRnd(u) + 1)* block.vCount * 0.5);
-        if (rnd > block.vCount) message = "error"
+        let rnd = Math.round((rndFunction(u) + 1)* vMax * 0.5);
         if (rnd < min) min = rnd
         if (rnd > max) max = rnd
     }
-    console.log(`${message} min: ${min} max: ${max} pour ${block.vCount}`)
+    console.log(`min: ${min} max: ${max} pour ${vMax}`)
+}
 }

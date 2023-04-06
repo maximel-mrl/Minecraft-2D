@@ -36,4 +36,11 @@ for (let y = 0; y < canvas.width*10; y++) {
     ctx.fillRect(i, canvas.height/2, 1, 1)
 }
 
+let seed = Math.random()*1000000;
 
+function toFloat(number) {
+    return (parseFloat(`0.${Math.round(number*(10**10))}`))
+}
+
+console.log(toFloat(seed))
+console.log(toFloat((seed%532)*seed))
