@@ -18,7 +18,18 @@ export default function updateMonsters(hPos, delay) {
         }
         monster.pos += monster.speed*delay
         let x = (monster.x + monster.pos - world.blockPos);
-        let xcol= Math.round(x)
+        let xcol = Math.round(x)
+        if (monster.speed > 0) {
+            xcol = Math.ceil(x)
+            if (hPos[xcol - 1] > hPos[xcol]) {
+                xcol = Math.floor(x)
+            }
+        } else {
+            xcol = Math.floor(x)
+            if (hPos[xcol - 1] > hPos[xcol]) {
+                xcol = Math.ceil(x)
+            }
+        }
         let y = canvas.height - (hPos[xcol] + 1) * block.s;
         drawBlock(block.monster, x*block.s, y)
     })
