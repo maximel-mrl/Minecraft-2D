@@ -16,6 +16,7 @@ export default function updateMonsters(hPos, delay) {
     monsters.forEach((monster, i) => {
         if (monster.pos > 3 || monster.pos < -3) {
             monster.speed = -monster.speed
+            monster.pos += monster.speed*delay
         }
         monster.pos += monster.speed*delay
         let x = (monster.x + monster.pos - world.blockPos);
@@ -38,15 +39,11 @@ export default function updateMonsters(hPos, delay) {
 
         let heroX = hero.x - world.translateX/block.s;
         if (heroX + 0.9 >= x && heroX - 0.9 <= x) {
-            ctx.fillStyle = "pink"
-            ctx.fillRect(x*block.s, y-100, block.s, block.s)
             if (hero.y > monster.y + 0.8 && hero.y < monster.y + 1.2) {
                 monsters.splice(i, 1)
                 updateScore()
             } else if (hero.y >= monster.y - 1 && hero.y < monster.y + 0.8) {
                 death()
-                ctx.fillStyle = "red"
-                ctx.fillRect(x*block.s, y-100, block.s, block.s)
             }
             // console.log("col")
         }

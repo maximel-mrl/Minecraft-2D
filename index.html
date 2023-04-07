@@ -9,8 +9,19 @@
     <link rel="stylesheet" href="stylesheet/style.css">
 </head>
 <body>
-    <div class="score">
-        Score: 0
+    <div class="score-container">
+        Score: <i class="score">0</i>
+    </div>
+    <div class="modal game-over hidden">
+        <h2>You Died!</h2>
+        <h3 class="final-score">
+            score: <i class="final-score yellow"></i>
+        </h3>
+        <div class="seed">
+            <input type="number" placeholder="Set seed (blank = random)">
+            <button>Same seed</button>
+        </div>
+        <button class="respawn">Respawn</button>
     </div>
     <script type="importmap"> {
         "imports": {

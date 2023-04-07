@@ -2,7 +2,7 @@ import assets from "./assets.js";
 import { update } from "./update.js";
 import { toFloatRange } from "./utils.js";
 
-let seed = setSeed();
+window.seed = setSeed();
 console.log(`%cSeed: ${seed}`,  "font-weight: bold; font-size: 16px")
 
 window.canvas = document.createElement("canvas");
@@ -23,7 +23,6 @@ assets.forEach((asset) => { // load all assets
             console.error("asset not recognized -> not imported");
     }
 })
-console.log(block.s)
 
 window.world = {
     g: 75,
@@ -33,7 +32,6 @@ window.world = {
     cloudTranslate: -120,
     cloudPos: 0,
     score: 0,
-    scoreElem: document.querySelector(".score"),
     waterHeight: block.vCount/2,
 
     curve: {
