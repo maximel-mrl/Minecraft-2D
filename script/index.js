@@ -32,6 +32,7 @@ window.world = {
     blockPos: 0,
     cloudTranslate: -120,
     cloudPos: 0,
+    score: 0,
     waterHeight: block.vCount/2,
 
     curve: {
@@ -63,6 +64,7 @@ window.hero = {
     movment: false,
     jump: true, // jump at start so it initialize Y
     jumping: false,
+    dead: false,
 }
 
 window.onload = () => {
