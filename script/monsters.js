@@ -9,7 +9,6 @@ for (let i = -50; i < 50; i++) {
         pos: 0,
     })
 }
-console.log(monsters)
 
 
 export default function updateMonsters(hPos, delay) {

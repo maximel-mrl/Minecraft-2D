@@ -5,15 +5,17 @@ import updateMonsters from "./monsters.js"
 let lastTime = Date.now();
 
 export function update() {
-    let delay = (Date.now() - lastTime)/1000;
+    let delay = Math.min((Date.now() - lastTime)/1000, 0.1);
     lastTime = Date.now();
     ctx.clearRect(0,0,canvas.width,canvas.height)
     ctx.save()
+
     updateClouds(delay)
     let hPos = updatePos()
 
     updateHero(hPos, delay)
     updateMonsters(hPos, delay)
+
     ctx.restore()
     if (hero.dead) return gameOver();
     requestAnimationFrame(update)

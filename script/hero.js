@@ -7,19 +7,15 @@ export default function updateHero(hPos, delay) {
     switch (hero.movment) { // left to right movement
         case "left":
             if (hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 > hero.y) break; // stop movement if hit block
-            if (hero.x > 4) {
-                hero.x -= hero.hSpeed*waterMul*delay
-            } else {
-                world.translateX += hero.hSpeed*waterMul*delay*block.s
-            }
+            if (hero.x > 4) hero.x -= hero.hSpeed*waterMul*delay
+            else world.translateX += hero.hSpeed*waterMul*delay*block.s
             break;
         case "right":
-            if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 > hero.y) break; // stop movement if hit block
-            if (hero.x < 15) {
-                hero.x += hero.hSpeed*waterMul*delay
-            } else {
-                world.translateX -= hero.hSpeed*waterMul*delay*block.s
-            }
+            if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 > hero.y) {
+                break;
+            } // stop movement if hit block
+            if (hero.x < 15) hero.x += hero.hSpeed*waterMul*delay
+            else world.translateX -= hero.hSpeed*waterMul*delay*block.s
             break;
     }
     // jump
@@ -35,7 +31,8 @@ export default function updateHero(hPos, delay) {
         if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 >= hero.y && hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 >= hero.y) {
             hero.jumping = false;
             hero.vSpeed = 0
-            hero.y = hPos[Math.round(Math.abs(world.translateX/block.s) + hero.x)] + 1
+            let groundPos = Math.round(Math.abs(world.translateX/block.s) + hero.x)
+            hero.y = hPos[groundPos] + 1
         }
     }
 
