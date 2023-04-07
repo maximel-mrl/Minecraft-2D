@@ -1,4 +1,5 @@
 import { drawBlock } from "./utils.js";
+import { updateScore, death } from "./score.js";
 let monsters = []
 for (let i = -50; i < 50; i++) {
     let y = i == 0 ? Math.round(Math.random()*50) : i
@@ -41,11 +42,9 @@ export default function updateMonsters(hPos, delay) {
             ctx.fillRect(x*block.s, y-100, block.s, block.s)
             if (hero.y > monster.y + 0.8 && hero.y < monster.y + 1.2) {
                 monsters.splice(i, 1)
-                hero.jump = true;
-                hero.jumping = false;
-                hero.vSpeed = 0;
-            } else if (hero.y >= monster.y && hero.y < monster.y + 0.8) {
-                hero.dead = true;
+                updateScore()
+            } else if (hero.y >= monster.y - 1 && hero.y < monster.y + 0.8) {
+                death()
                 ctx.fillStyle = "red"
                 ctx.fillRect(x*block.s, y-100, block.s, block.s)
             }

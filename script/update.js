@@ -17,14 +17,10 @@ export function update() {
     updateMonsters(hPos, delay)
 
     ctx.restore()
-    if (hero.dead) return gameOver();
+    if (hero.dead) return;
     requestAnimationFrame(update)
 }
 
-function gameOver() {
-    alert("Game Over")
-    window.location.reload()
-}
 
 function updatePos() {
     if (world.translateX < -5* block.s) {

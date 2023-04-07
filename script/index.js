@@ -33,6 +33,7 @@ window.world = {
     cloudTranslate: -120,
     cloudPos: 0,
     score: 0,
+    scoreElem: document.querySelector(".score"),
     waterHeight: block.vCount/2,
 
     curve: {
