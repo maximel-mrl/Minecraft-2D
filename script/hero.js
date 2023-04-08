@@ -28,11 +28,20 @@ export default function updateHero(hPos, delay) {
     if (hero.jumping) {
         hero.vSpeed -= world.g*delay 
         hero.y += hero.vSpeed*delay
-        if (hPos[Math.ceil(Math.abs(world.translateX/block.s) + hero.x)] + 1 >= hero.y && hPos[Math.floor(Math.abs(world.translateX/block.s) + hero.x)] + 1 >= hero.y) {
-            hero.jumping = false;
-            hero.vSpeed = 0
-            let groundPos = Math.round(Math.abs(world.translateX/block.s) + hero.x)
-            hero.y = hPos[groundPos] + 1
+
+        
+        let x = Math.abs(world.translateX/block.s) + hero.x;
+        let xcol = Math.round(x)
+
+        if (hPos[xcol - 1] > hPos[xcol]) {
+            xcol = Math.floor(x)
+        } else if (hPos[xcol + 1] > hPos[xcol]) {
+            xcol = Math.ceil(x)
+        }
+        if (hero.y <= hPos[xcol] + 1 && hero.y >= hPos[xcol] + 0.8 || hero.y <= hPos[xcol]) {
+                hero.jumping = false;
+                hero.vSpeed = 0
+                hero.y = hPos[xcol] + 1
         }
     }
 

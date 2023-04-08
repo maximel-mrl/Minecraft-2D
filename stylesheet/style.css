@@ -195,3 +195,7 @@ input:focus, select:focus {
 .infos button {
     margin: 0 auto;
 }
+.cp {
+    position: fixed;
+    bottom: 0.5em;
+}
