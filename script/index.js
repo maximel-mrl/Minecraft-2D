@@ -1,15 +1,20 @@
 import assets from "./assets.js";
 import { update } from "./update.js";
 import { toFloatRange } from "./utils.js";
-
-window.seed = setSeed();
-console.log(`%cSeed: ${seed}`,  "font-weight: bold; font-size: 16px")
-
 window.canvas = document.createElement("canvas");
     canvas.width = document.body.clientWidth;
     canvas.height = document.body.clientHeight;
     document.body.appendChild(canvas);
 window.ctx = canvas.getContext("2d");
+
+const modeSelect = document.querySelector("#mode")
+modeSelect.onchange = () => {
+    if (!/^survival$|^peacefull$|^spec$/.test(modeSelect.value)) return;
+    world.gameMode = modeSelect.value;
+}
+
+window.seed = setSeed();
+console.log(`%cSeed: ${seed}`,  "font-weight: bold; font-size: 16px")
 
 window.block = { vCount: 12, }
 block["s"] = (canvas.height*0.55)/block.vCount;
@@ -26,6 +31,7 @@ assets.forEach((asset) => { // load all assets
 
 window.world = {
     g: 75,
+    gameMode: "survival",
 
     translateX: 0,
     blockPos: 0,
@@ -33,6 +39,7 @@ window.world = {
     cloudPos: 0,
     score: 0,
     waterHeight: block.vCount/2,
+    dir: 0,
 
     curve: {
         a: ((block.vCount-1)/2)*block.s, // height of the curves;
@@ -86,9 +93,11 @@ document.addEventListener("keydown", ({key}) => {
     switch (key) {
         case "ArrowRight":
             hero.movment = "right";
+            world.dir = 1;
             break;
         case "ArrowLeft":
             hero.movment = "left";
+            world.dir = -1;
             break;
         case "ArrowUp":
             hero.jump = true;
@@ -96,6 +105,7 @@ document.addEventListener("keydown", ({key}) => {
     }
 })
 document.addEventListener("keyup", ({key}) => {
+    world.dir = 0;
     switch (key) {
         case "ArrowRight":
             if (hero.movment != "right") return;

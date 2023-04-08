@@ -9,20 +9,31 @@ export function update() {
     lastTime = Date.now();
     ctx.clearRect(0,0,canvas.width,canvas.height)
     ctx.save()
-
     updateClouds(delay)
-    let hPos = updatePos()
+    let hPos;
+    switch (world.gameMode) {
+        case "survival":
+            hPos = updatePos(0, delay)
+            updateHero(hPos, delay)
+            updateMonsters(hPos, delay)
+            if (hero.dead) return;
+            break;
+        case "peacefull":
+            hPos = updatePos(0, delay)
+            updateHero(hPos, delay)
+            break;
+        case "spec":
+            updatePos(1, delay)
+    }
 
-    updateHero(hPos, delay)
-    updateMonsters(hPos, delay)
 
     ctx.restore()
-    if (hero.dead) return;
     requestAnimationFrame(update)
 }
 
 
-function updatePos() {
+function updatePos(movment, delay) {
+    world.translateX -= 900*delay*world.dir * movment;
     if (world.translateX < -5* block.s) {
         world.translateX += block.s;
         world.blockPos++
