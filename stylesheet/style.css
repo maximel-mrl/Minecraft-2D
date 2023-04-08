@@ -55,6 +55,13 @@ button:hover {
     color: #ffffa0;
 }
 
+a {
+    color: #ffffa0;
+    text-decoration: none;
+    text-shadow: 0.01em 0.01em 0 black;
+    letter-spacing: 0.04em;
+}
+
 input, select {
     position: relative;
     font-size: 1.5rem;
@@ -69,13 +76,13 @@ input:focus, select:focus {
     outline: 1px solid white;
 }
 
-h2 {
+.h1 {
     font-size: 5rem;
     color: white;
     text-shadow: 0.1em 0.1em 0 #4d4d4de3;
 }
 
-h3 {
+.h2 {
     font-size: 2rem;
     color: white;
     text-shadow: 0.1em 0.1em 0 #4d4d4de3;
@@ -99,17 +106,18 @@ h3 {
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    padding: 5vh 5vw;
+    z-index: 5;
 }
 .modal.hidden {
     display: none;
 }
-
 .game-over {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    
+    padding: 5vh 5vw;
 
     background-color: black;
     background-color: rgba(184, 44, 44, 0.397);
@@ -135,4 +143,55 @@ h3 {
     padding: 0 1em;
     font-size: 1rem;
     width: auto;
+}
+
+.info-container {
+    position: fixed;
+    bottom: 0.5em;
+    right: 1em;
+}
+
+.info {
+    width: 2em;
+    height: 2em;
+    background-image: url("../texture/round-button-bg.png");
+    background-color: transparent;
+    background-size: cover;
+}
+.info:hover {
+    background-image: url("../texture/round-button-bg-hover.png");
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    background-image: url("../texture/dirt-bg.webp");
+    background-size: cover;
+    overflow: auto;
+}
+
+.infos .content {
+    max-width: 900px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    gap: 3em;
+}
+
+
+.content .h1 {
+    text-align: center;
+}
+.infos p {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.infos button {
+    margin: 0 auto;
 }

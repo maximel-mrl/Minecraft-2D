@@ -7,11 +7,9 @@ window.canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
 window.ctx = canvas.getContext("2d");
 
-const modeSelect = document.querySelector("#mode")
-modeSelect.onchange = () => {
-    if (!/^survival$|^peacefull$|^spec$/.test(modeSelect.value)) return;
-    world.gameMode = modeSelect.value;
-}
+const modeSelect = document.querySelector("#mode");
+const infoBtns = document.querySelectorAll(".toggle-info");
+const infosModal = document.querySelector(".infos")
 
 window.seed = setSeed();
 console.log(`%cSeed: ${seed}`,  "font-weight: bold; font-size: 16px")
@@ -83,6 +81,17 @@ window.onresize = () => {
     canvas.height = document.body.clientHeight;
 }
 
+modeSelect.onchange = () => {
+    if (!/^survival$|^peacefull$|^spec$/.test(modeSelect.value)) return;
+    world.gameMode = modeSelect.value;
+}
+
+infoBtns.forEach(infoBtn => {
+    infoBtn.onclick = () => {
+        infosModal.classList.toggle("hidden");
+    }
+})
+
 function setSeed() {
     let definedSeed = parseInt(window.location.href.split("?seed=")[1])
     if (definedSeed && definedSeed != 0) return definedSeed
@@ -117,5 +126,7 @@ document.addEventListener("keyup", ({key}) => {
             break;
     }
 })
+
+
 
 

@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="stylesheet/style.css">
 </head>
 <body>
-    <div class="score-container">
-        Score: <i class="score">0</i>
-    </div>
     <div class="mode-container">
         <label for="game-mode">Game mode</label>
         <select name="game-mode" id="mode">
@@ -20,9 +17,37 @@
             <option value="spec">spectator</option>
         </select>
     </div>
+    <div class="score-container">
+        Score: <i class="score">0</i>
+    </div>
+    <div class="info-container">
+        <button class="info toggle-info">i</button>
+    </div>
+    <div class="modal infos hidden">
+        <section class="content">
+            <h1 class="h1">Minecraft 2D</h1>
+            <article>
+                <h2 class="h2">What is it?</h2>
+                <p>
+                    Minecraft-2D is a showcase of procedural terrain generation using trigonometric functions.
+                    The terrain is generated randomly and infinitely using multiple sinus functions,
+                    this is inspired by <a href="https://kwa.ng/procedurally-generated-svg-landscapes/" target="_blank">Kevinverse</a> work.
+                    The focus of the site is on showcasing the random generation of terrain, so the gameplay is really secondary just to give a "purpose" to the terrain.
+                </p>
+            </article>
+            <article>
+                <h2 class="h2">How it works?</h2>
+                <p>
+                    Terrain is generated with multiple sinus functions, by adding multiple of theses we get a curve that takes really long to reapeat and so feels totally random. This method is used for everything except monsters.
+                    <a href="https://github.com/maximel-mrl/Minecraft-2D" target="_blank">Source code</a>
+                </p>
+            </article>
+            <button class="toggle-info">Go back</button>
+        </section>
+    </div>
     <div class="modal game-over hidden">
-        <h2>You Died!</h2>
-        <h3 class="final-score">
+        <h2 class="h1">You Died!</h2>
+        <h3 class="final-score h2">
             score: <i class="final-score yellow"></i>
         </h3>
         <div class="seed">
