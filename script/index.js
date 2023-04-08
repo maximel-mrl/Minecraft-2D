@@ -82,6 +82,7 @@ window.onresize = () => {
 }
 
 modeSelect.onchange = () => {
+    modeSelect.blur()
     if (!/^survival$|^peacefull$|^spec$/.test(modeSelect.value)) return;
     world.gameMode = modeSelect.value;
 }

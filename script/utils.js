@@ -16,6 +16,7 @@ export function toFloatRange(number) {
     number = number*(10**10) > 10**20 ? number : number*(10**10) // if number to big (return as something e+ something) this function return 0.one digit so make sure number is never to big
     return (parseFloat(`0.${Math.round(number)}`))
 }
+export const diff = (a,b) => (a>b) ? a-b : b-a;
 
 // test terrain generation to make sure it's good (TEMP)
 export function test(rndFunction, vMax) {

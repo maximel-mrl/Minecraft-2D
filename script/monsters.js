@@ -1,7 +1,7 @@
-import { drawBlock } from "./utils.js";
+import { drawBlock, diff } from "./utils.js";
 import { updateScore, death } from "./score.js";
 let monsters = []
-for (let i = -50; i < 50; i++) {
+for (let i = -25; i < 25; i++) {
     let y = i == 0 ? Math.round(Math.random()*50) : i
     monsters.push({
         x: Math.round((Math.random()*15+8)*y),
@@ -10,6 +10,7 @@ for (let i = -50; i < 50; i++) {
         pos: 0,
     })
 }
+console.log(monsters)
 
 
 export default function updateMonsters(hPos, delay) {
@@ -45,12 +46,23 @@ export default function updateMonsters(hPos, delay) {
             } else if (hero.y >= monster.y - 1 && hero.y < monster.y + 0.8) {
                 death()
             }
-            // console.log("col")
+        }
+        if (diff(world.blockPos, monster.x) > 50) {
+            monsters.splice(i, 1)
         }
     })
+    if (monsters.length < 20) {
+        let side = Math.random() > 0.5 ? 1 : -1;
+        monsters.push({
+            x: world.blockPos + 25*side + Math.random()*20*side,
+            y: 10,
+            speed: Math.round(Math.random()*2.5 + 0.5),
+            pos: 0,
+        })
+    }
 }
 
+
 setInterval(() => {
-    // console.log(monsters[49].x + monsters[49].pos)
-    // console.log(hero.x + world.blockPos)
-}, 150);
+    console.log(monsters)
+}, 1000);
