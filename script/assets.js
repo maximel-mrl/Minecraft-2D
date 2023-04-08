@@ -1,57 +1,57 @@
 export default [
     {
         name: "dirt",
-        src: "./texture/dirt.jpg",
+        src: "/assets/texture/dirt.jpg",
         type: "img"
     },
     {
         name: "grass",
-        src: "./texture/grass.jpg",
+        src: "/assets/texture/grass.jpg",
         type: "img"
     },
     {
         name: "stone",
-        src: "./texture/stone.jpg",
+        src: "/assets/texture/stone.jpg",
         type: "img"
     },
     {
         name: "tallGrass",
-        src: "./texture/tallgrass.png",
+        src: "/assets/texture/tallgrass.png",
         type: "img"
     },
     {
         name: "water",
-        src: "./texture/water.jpg",
+        src: "/assets/texture/water.jpg",
         type: "img"
     },
     {
         name: "sand",
-        src: "./texture/sand.jpg",
+        src: "/assets/texture/sand.jpg",
         type: "img"
     },
     {
         name: "sandStone",
-        src: "./texture/sandstone.jpg",
+        src: "/assets/texture/sandstone.jpg",
         type: "img"
     },
     {
         name: "cactus",
-        src: "./texture/cactus.png",
+        src: "/assets/texture/cactus.png",
         type: "img"
     },
     {
         name: "deadBush",
-        src: "./texture/deadbush.png",
+        src: "/assets/texture/deadbush.png",
         type: "img"
     },
     {
         name: "hero",
-        src: "./texture/derp.jpg",
+        src: "/assets/texture/derp.jpg",
         type: "img"
     },
     {
         name: "monster",
-        src: "./texture/creeper.jpg",
+        src: "/assets/texture/creeper.jpg",
         type: "img"
     },
 ]

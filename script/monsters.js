@@ -47,14 +47,14 @@ export default function updateMonsters(hPos, delay) {
                 death()
             }
         }
-        if (diff(world.blockPos, monster.x) > 50) {
+        if (diff(world.blockPos, monster.x) > 100) {
             monsters.splice(i, 1)
         }
     })
-    if (monsters.length < 20) {
+    if (monsters.length < 15) {
         let side = Math.random() > 0.5 ? 1 : -1;
         monsters.push({
-            x: world.blockPos + 25*side + Math.random()*20*side,
+            x: world.blockPos + 40*side + Math.random()*60*side,
             y: 10,
             speed: Math.round(Math.random()*2.5 + 0.5),
             pos: 0,
