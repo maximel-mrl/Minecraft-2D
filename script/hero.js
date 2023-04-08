@@ -28,11 +28,9 @@ export default function updateHero(hPos, delay) {
     if (hero.jumping) {
         hero.vSpeed -= world.g*delay 
         hero.y += hero.vSpeed*delay
-
         
         let x = Math.abs(world.translateX/block.s) + hero.x;
         let xcol = Math.round(x)
-
         if (hPos[xcol - 1] > hPos[xcol]) {
             xcol = Math.floor(x)
         } else if (hPos[xcol + 1] > hPos[xcol]) {

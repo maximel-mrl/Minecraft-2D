@@ -1,6 +1,6 @@
 @font-face { /* college block for title */
     font-family: "minecraft";
-    src: url("/assets/fonts/MinecraftRegular-Bmg3.otf");
+    src: url("../assets/fonts/MinecraftRegular-Bmg3.otf");
 }
 
 * {
@@ -44,14 +44,14 @@ button {
     width: 23.32em;
     height: 2.3em;
     border: none;
-    background-image: url("/assets/images/button-bg.jpg");
+    background-image: url("../assets/images/button-bg.jpg");
     background-size:100% 100%;
     /* background-size: cover; */
     color: white;
     text-shadow: 0.1em 0.1em 0 #3d3d3d;
 }
 button:hover {
-    background-image: url("/assets/images/button-bg-hover.jpg");
+    background-image: url("../assets/images/button-bg-hover.jpg");
     color: #ffffa0;
 }
 
@@ -154,19 +154,19 @@ input:focus, select:focus {
 .info {
     width: 2em;
     height: 2em;
-    background-image: url("/assets/images/round-button-bg.png");
+    background-image: url("../assets/images/round-button-bg.png");
     background-color: transparent;
     background-size: cover;
 }
 .info:hover {
-    background-image: url("/assets/images/round-button-bg-hover.png");
+    background-image: url("../assets/images/round-button-bg-hover.png");
 }
 
 .infos {
     display: flex;
     flex-direction: column;
     background-color: black;
-    background-image: url("/assets/images/dirt-bg.webp");
+    background-image: url("../assets/images/dirt-bg.webp");
     background-size: cover;
     overflow: auto;
 }
