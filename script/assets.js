@@ -54,4 +54,4 @@ export default [
         src: "assets/texture/creeper.jpg",
         type: "img"
     },
-]
+];
