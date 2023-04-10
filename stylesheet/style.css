@@ -3,6 +3,9 @@
     src: url("../assets/fonts/MinecraftRegular-Bmg3.otf");
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                    RESET                                   */
+/* -------------------------------------------------------------------------- */
 * {
     margin: 0;
     box-sizing: border-box;
@@ -19,6 +22,9 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                   GENERAL                                  */
+/* -------------------------------------------------------------------------- */
 body {
     height: 100vh;
     height: 100dvh;
@@ -26,16 +32,6 @@ body {
     justify-content: center;
     align-items: center;
     font-family: minecraft;
-}
-
-canvas {
-    background-color: #82C0CC;
-    background-color: radial-gradient();
-    background: linear-gradient(-190deg, #B7DAE1 0%, #6ebac9 100%);
-    max-width: 100%;
-    max-height: 100vh;
-    max-height: 100dvh;
-    object-fit: contain;
 }
 
 button {
@@ -62,18 +58,8 @@ a {
     letter-spacing: 0.04em;
 }
 
-input, select {
-    position: relative;
-    font-size: 1.5rem;
-    width: 23.32em;
-    height: 2.3em;
-    border: 0.12em solid white;
-    background-color: black;
-    padding-left: 0.8em;
-    color: white;
-}
-input:focus, select:focus {
-    outline: 1px solid white;
+.yellow {
+    color: #ffffa0;
 }
 
 .h1 {
@@ -88,15 +74,34 @@ input:focus, select:focus {
     text-shadow: 0.1em 0.1em 0 #4d4d4de3;
 }
 
-.yellow {
-    color: #ffffa0;
+.h3 {
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 0.1em 0.1em 0 #4d4d4de3;
 }
 
-.score-container {
-    position: fixed;
+canvas {
+    background-color: #82C0CC;
+    background-color: radial-gradient();
+    background: linear-gradient(-190deg, #B7DAE1 0%, #6ebac9 100%);
+    max-width: 100%;
+    max-height: 100vh;
+    max-height: 100dvh;
+    object-fit: contain;
+}
+
+input, select {
+    position: relative;
     font-size: 1.5rem;
-    top: 1rem;
-    right: 1rem;
+    width: 23.32em;
+    height: 2.3em;
+    border: 0.12em solid white;
+    background-color: black;
+    padding-left: 0.8em;
+    color: white;
+}
+input:focus, select:focus {
+    outline: 1px solid white;
 }
 
 .modal {
@@ -111,6 +116,15 @@ input:focus, select:focus {
 .modal.hidden {
     display: none;
 }
+
+
+.score-container {
+    position: fixed;
+    font-size: 1.5rem;
+    top: 1rem;
+    right: 1rem;
+}
+
 .game-over {
     display: flex;
     flex-direction: column;
@@ -183,7 +197,6 @@ input:focus, select:focus {
     gap: 3em;
 }
 
-
 .content .h1 {
     text-align: center;
 }
@@ -198,4 +211,13 @@ input:focus, select:focus {
 .cp {
     position: fixed;
     bottom: 0.5em;
+}
+
+.content section {
+    margin: 0.5em 0;
+}
+
+.content img {
+    display: block;
+    margin: 0.5em auto;
 }
