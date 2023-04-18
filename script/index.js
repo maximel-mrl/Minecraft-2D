@@ -72,12 +72,18 @@ window.hero = {
 
 assets.forEach((asset) => { // import all assets
     switch (asset.type) {
-        case "img":
+        case "blockImg":
             block[asset.name] = document.createElement("img");
             block[asset.name].src = asset.src;
             break;
+        case "sound":
+            world[asset.name] = {}
+            world[asset.name]["src"] = asset.src;
+            world[asset.name]["audio"] = new Audio(asset.src);
+            break;
         default:
             console.error("asset not recognized -> not imported");
+            console.log(asset)
     }
 });
 

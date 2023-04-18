@@ -2,56 +2,66 @@ export default [
     {
         name: "dirt",
         src: "assets/texture/dirt.jpg",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "grass",
         src: "assets/texture/grass.jpg",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "stone",
         src: "assets/texture/stone.jpg",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "tallGrass",
         src: "assets/texture/tallgrass.png",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "water",
         src: "assets/texture/water.jpg",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "sand",
         src: "assets/texture/sand.jpg",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "sandStone",
         src: "assets/texture/sandstone.jpg",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "cactus",
         src: "assets/texture/cactus.png",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "deadBush",
         src: "assets/texture/deadbush.png",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "hero",
         src: "assets/texture/derp.jpg",
-        type: "img"
+        type: "blockImg"
     },
     {
         name: "monster",
         src: "assets/texture/creeper.jpg",
-        type: "img"
+        type: "blockImg"
+    },
+    {
+        name: "deathSound",
+        src: "assets/sounds/Ooooh.mp3",
+        type: "sound"
+    },
+    {
+        name: "mobKilledSound",
+        src: "assets/sounds/creeper-dying.mp3",
+        type: "sound"
     },
 ];
