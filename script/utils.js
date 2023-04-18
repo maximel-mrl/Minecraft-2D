@@ -15,4 +15,4 @@ export function toFloatRange(number) {
     return (parseFloat(`0.${Math.round(number)}`));
 }
 
-export const diff = (a,b) => (a>b) ? a-b : b-a; // easiest way working for difference with positive/negatove number and not one always bigger
+export const diff = (a,b) => (a>b) ? a-b : b-a; // easiest way working for difference with positive/negative number and not one always bigger

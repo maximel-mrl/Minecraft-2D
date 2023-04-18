@@ -14,6 +14,7 @@ export function update() {
 
     updateClouds(delay);
     let hPos;
+    // update only necessary part for mode
     switch (world.gameMode) {
         case "survival":
             hPos = updatePos(0, delay);
@@ -65,6 +66,7 @@ function updateBlocks(offset, pos) {
         if (biome >= 0) hPos = plainGeneration(i, hPos, pos);
         else hPos = desertGeneration(i, hPos, pos, biome);
 
+        // clouds
         let clouds = sinRnd((i+pos+world.cloudPos)*world.cloudSeed);
         if (clouds > 0.2) {
             ctx.fillStyle = "#CEE5F2";

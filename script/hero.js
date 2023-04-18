@@ -16,14 +16,19 @@ export default function updateHero(hPos, delay) {
             break;
     }
     /* --------------------------------- JUMPING -------------------------------- */
+    let jSpeed = hero.jSpeed * waterMul;
+    let gravity = world.g * waterMul
+
     if ((hero.jump && !hero.jumping) || (hero.jump && waterMul < 1)) { // if jump action
         hero.jump = false;
         hero.jumping = true;
-        hero.vSpeed += hero.jSpeed;
+        if (hero.vSpeed < jSpeed) {
+            hero.vSpeed += jSpeed;
+        }
         hero.y += hero.vSpeed * delay;
     }
     if (hero.jumping) { // if in the air
-        hero.vSpeed -= world.g*delay;
+        hero.vSpeed -= gravity*delay;
         hero.y += hero.vSpeed*delay;
         
         let x = Math.abs(world.translateX/block.s) + hero.x;
