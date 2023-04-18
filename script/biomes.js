@@ -25,8 +25,12 @@ export function plainGeneration(i, hPos, pos) {
     return hPos;
 }
 
-export function desertGeneration(i, hPos, pos) {
-    hPos = Math.round(hPos * 0.75 + block.vCount *0.25); // flaten a bit desert
+export function desertGeneration(i, hPos, pos, biome) {
+    // biome allow smooth transition
+    biome = Math.abs(biome)*30
+    biome = biome > 1 ? 1 : biome
+    // biome = 1;
+    hPos = Math.round((hPos * 0.60 + block.vCount *0.40)*biome + (hPos + 1)*(1-biome)); // flaten a bit desert if enough in biome
     let sandHeight = Math.round((sinRnd((i+pos)*world.stoneSeed) + 4));
     let sandStoneHeight = Math.round((sinRnd((i+pos)*world.stoneSeed + 500) + 3));
 
