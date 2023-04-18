@@ -1,6 +1,6 @@
 import assets from "./assets.js";
 import { update } from "./update.js";
-import { toFloatRange } from "./utils.js";
+import { playAudio, toFloatRange } from "./utils.js";
 
 // created canvas
 window.canvas = document.createElement("canvas");
@@ -81,6 +81,15 @@ assets.forEach((asset) => { // import all assets
             world[asset.name]["src"] = asset.src;
             world[asset.name]["audio"] = new Audio(asset.src);
             break;
+        case "sounds":
+            world[asset.name] = []
+            asset.src.forEach(src => {
+                world[asset.name].push({
+                    src: src,
+                    audio: new Audio(src),
+                });
+            })
+            break;
         default:
             console.error("asset not recognized -> not imported");
             console.log(asset)
@@ -109,6 +118,27 @@ modeSelect.onchange = () => {
 infoBtns.forEach(infoBtn => {
     infoBtn.onclick = () => infosModal.classList.toggle("hidden");
 })
+
+/* ---------------------------------- MUSIC --------------------------------- */
+let actualMusic;
+function playmusic() {
+    console.log("musique")
+    if (actualMusic && !actualMusic.paused) {
+        setTimeout(() => {
+            playmusic() 
+        }, 32000 + Math.random() * 32000);
+        return
+    }
+    console.log("musique played")
+    const index = Math.round(Math.random() * (world.musics.length - 1))
+    actualMusic = playAudio(world.musics[index], false)
+    setTimeout(() => {
+       playmusic() 
+    }, 32000 + Math.random() * 32000);
+}
+setTimeout(() => {
+    playmusic()
+}, 10000 + 10000*Math.random());
 
 
 /* ----------------------------- INPUT LISTENING ---------------------------- */

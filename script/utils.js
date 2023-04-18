@@ -17,8 +17,9 @@ export function toFloatRange(number) {
 
 export const diff = (a,b) => (a>b) ? a-b : b-a; // easiest way working for difference with positive/negative number and not one always bigger
 
-export function playAudio({audio, src}) {
+export function playAudio({audio, src}, replay = true) {
     if (!audio || !src) return;
     audio.play()
+    if (!replay) return audio;
     audio = new Audio(src)
 }

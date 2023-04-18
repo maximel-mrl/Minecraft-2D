@@ -64,4 +64,12 @@ export default [
         src: "assets/sounds/creeper-dying.mp3",
         type: "sound"
     },
+    {
+        name: "musics",
+        src: [
+            "assets/sounds/Minecraft-piano1.mp3",
+            "assets/sounds/Minecraft-piano2.mp3",
+        ],
+        type: "sounds"
+    },
 ];
