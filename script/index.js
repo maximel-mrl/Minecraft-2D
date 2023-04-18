@@ -2,22 +2,29 @@ import assets from "./assets.js";
 import { update } from "./update.js";
 import { toFloatRange } from "./utils.js";
 
+// created canvas
 window.canvas = document.createElement("canvas");
     canvas.width = document.body.clientWidth;
     canvas.height = document.body.clientHeight;
     document.body.appendChild(canvas);
 window.ctx = canvas.getContext("2d");
-
+// get html element
 const modeSelect = document.querySelector("#mode");
 const infoBtns = document.querySelectorAll(".toggle-info");
 const infosModal = document.querySelector(".infos");
 
-window.seed = setSeed();
+//set seed
+window.seed = (() => {
+    let definedSeed = parseInt(window.location.href.split("?seed=")[1]);
+    if (definedSeed && definedSeed != 0) return definedSeed;
+    return Math.round(Math.random()*(10**15));
+})();
 console.log(`%cSeed: ${seed}`,  "font-weight: bold; font-size: 16px");
 
+
+// initialization block player world etc
 window.block = { vCount: 12 };
 block["s"] = (canvas.height*0.55)/block.vCount;
-
 
 window.world = {
     g: 75,
@@ -74,6 +81,7 @@ assets.forEach((asset) => { // import all assets
     }
 });
 
+// wait for assets load to start updating
 window.onload = () => {
     block["imgS"] = block.dirt.naturalWidth;
     update();
@@ -84,21 +92,18 @@ window.onresize = () => {
     canvas.height = document.body.clientHeight;
 }
 
+// change game mode
 modeSelect.onchange = () => {
     modeSelect.blur();
     if (!/^survival$|^peacefull$|^spec$/.test(modeSelect.value)) return;
     world.gameMode = modeSelect.value;
 }
 
+// open/close info modal
 infoBtns.forEach(infoBtn => {
     infoBtn.onclick = () => infosModal.classList.toggle("hidden");
 })
 
-function setSeed() {
-    let definedSeed = parseInt(window.location.href.split("?seed=")[1]);
-    if (definedSeed && definedSeed != 0) return definedSeed;
-    return Math.round(Math.random()*(10**15));
-}
 
 /* ----------------------------- INPUT LISTENING ---------------------------- */
 document.addEventListener("keydown", ({key}) => {

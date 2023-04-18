@@ -1,4 +1,4 @@
-export function sinRnd(i) {
+export function sinRnd(i) { // (star of the show) return a number between 0 and 1 for any given number that is "rdm" because frequency etc are
     let weight = world.curve.inferings.length+1;
     let hPos = (Math.sin(world.curve.f*i + world.curve.o))/weight;
     world.curve.inferings.forEach((infering, m) => hPos += (Math.sin(infering*i + world.curve.o2*m))/weight);

@@ -5,6 +5,7 @@ let monsters = [];
 
 export default function updateMonsters(hPos, delay) {
     monsters.forEach((monster, i) => {
+        let waterMul = monster.y < world.waterHeight ? 0.5 : 1;
         /* -------------------------------- MOVEMENT -------------------------------- */
         if (Math.abs(monster.pos) > 3) {
             monster.speed = -monster.speed;
@@ -12,7 +13,7 @@ export default function updateMonsters(hPos, delay) {
         }
         /* -------------------------------- POSITION -------------------------------- */
         // x
-        monster.pos += monster.speed*delay;
+        monster.pos += monster.speed*delay*waterMul;
         let x = (monster.x + monster.pos - world.blockPos);
         // y
         let xcol = Math.round(x);

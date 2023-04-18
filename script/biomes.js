@@ -26,11 +26,12 @@ export function plainGeneration(i, hPos, pos) {
 }
 
 export function desertGeneration(i, hPos, pos) {
-    hPos = Math.round(hPos * 0.75 + block.vCount *0.25);
+    hPos = Math.round(hPos * 0.75 + block.vCount *0.25); // flaten a bit desert
     let sandHeight = Math.round((sinRnd((i+pos)*world.stoneSeed) + 4));
     let sandStoneHeight = Math.round((sinRnd((i+pos)*world.stoneSeed + 500) + 3));
+
     let y = 0;
-    if (hPos - sandHeight > sandStoneHeight) {
+    if (hPos - sandHeight > sandStoneHeight) { // stone
         while (y < hPos - sandStoneHeight - sandHeight) { 
             drawBlock(block.stone, i*block.s, canvas.height-y*block.s);
             y++;
@@ -50,7 +51,7 @@ export function desertGeneration(i, hPos, pos) {
         for (let z = 0; z <= Math.round(sinRnd((i+pos) * world.grassSeed + 2)*2.5); z++) {
             drawBlock(block.cactus, i*block.s, canvas.height-(hPos+z)*block.s);
         }
-    } else if (sinRnd((i+pos) * world.grassSeed + 500) > 0.4) {
+    } else if (sinRnd((i+pos) * world.grassSeed + 500) > 0.4) { // deadbush
         drawBlock(block.deadBush, i*block.s, canvas.height-hPos*block.s);
     }
     // water
@@ -64,8 +65,8 @@ function water(hPos, i) {
     for (let y = hPos + 1; y < world.waterHeight; y++) {
         ctx.clearRect(i*block.s, canvas.height-(y+9)*block.s, block.s, block.s*10); // remove blocks if necessary
         if (y + 1 < world.waterHeight) {
-            drawBlock(block.water, i*block.s, canvas.height-y*block.s);
+            drawBlock(block.water, i*block.s, canvas.height-y*block.s); // full water block
         }
-        drawBlock(block.water, i*block.s, canvas.height-y*block.s, 0.8);
+        drawBlock(block.water, i*block.s, canvas.height-y*block.s, 0.8); // slightly smaller block when on top
     }
 }

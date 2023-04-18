@@ -33,7 +33,7 @@ export function update() {
     ctx.restore();
     requestAnimationFrame(update);
 }
-
+/* ---------------------------- UPDATE WORLD POS ---------------------------- */
 function updatePos(movment, delay) {
     world.translateX -= 900*delay*world.dir * movment;
 
@@ -48,6 +48,7 @@ function updatePos(movment, delay) {
     return updateBlocks(world.translateX, world.blockPos);
 }
 
+/* ------------------------------ UPDATE CLOUDS ----------------------------- */
 function updateClouds(delay) {
     world.cloudTranslate += 10*delay;
     if (world.cloudTranslate > - 2 * block.s) {
@@ -56,6 +57,7 @@ function updateClouds(delay) {
     }
 }
 
+/* ---------------------------- WORLD GENERATION ---------------------------- */
 function updateBlocks(offset, pos) {
     ctx.translate(offset, -block.s); // get to th bottom of block + smooth horizontal movement
     let heights = [];
@@ -83,7 +85,7 @@ function updateBlocks(offset, pos) {
                 }
             }
         }
-        heights.push(hPos);
+        heights.push(hPos); // allow block position to be used for collision
     }
     return heights;
 }
