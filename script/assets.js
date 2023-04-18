@@ -67,8 +67,10 @@ export default [
     {
         name: "musics",
         src: [
-            "assets/sounds/Minecraft-piano1.mp3",
-            "assets/sounds/Minecraft-piano2.mp3",
+            "assets/sounds/theme-1.mp3",
+            "assets/sounds/theme-2.mp3",
+            "assets/sounds/theme-3.mp3",
+            "assets/sounds/theme-4.mp3",
         ],
         type: "sounds"
     },

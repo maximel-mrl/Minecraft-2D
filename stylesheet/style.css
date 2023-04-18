@@ -159,20 +159,41 @@ input:focus, select:focus {
     width: auto;
 }
 
+.sound-container {
+    position: fixed;
+    bottom: 0.5em;
+    left: 1em;
+}
+
+.toggle-sound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle-sound .hidden {
+    display: none;
+}
+
+.toggle-sound img {
+    object-fit: contain;
+    max-width: 70%;
+}
+
 .info-container {
     position: fixed;
     bottom: 0.5em;
     right: 1em;
 }
 
-.info {
+.round-btn {
     width: 2em;
     height: 2em;
     background-image: url("../assets/images/round-button-bg.png");
     background-color: transparent;
     background-size: cover;
 }
-.info:hover {
+.round-btn:hover {
     background-image: url("../assets/images/round-button-bg-hover.png");
 }
 

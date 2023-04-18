@@ -9,7 +9,7 @@ const respawnBtn = gameOverModal.querySelector(".respawn");
 
 
 export function updateScore() {
-    playAudio(world.mobKilledSound)
+    world.mobKilledSound = playAudio(world.mobKilledSound)
     hero.jump = true;
     hero.jumping = false;
     hero.vSpeed = 0;
@@ -19,7 +19,7 @@ export function updateScore() {
 
 export function death() {
     hero.dead = true;
-    playAudio(world.deathSound);
+    world.deathSound = playAudio(world.deathSound);
     finalScoreTxt.innerHTML = world.score;
     seedBtn.onclick = () => seedInput.value = seed;
     gameOverModal.classList.toggle("hidden");

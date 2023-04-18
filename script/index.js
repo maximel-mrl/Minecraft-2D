@@ -12,6 +12,7 @@ window.ctx = canvas.getContext("2d");
 const modeSelect = document.querySelector("#mode");
 const infoBtns = document.querySelectorAll(".toggle-info");
 const infosModal = document.querySelector(".infos");
+const soundBtn = document.querySelector(".toggle-sound");
 
 //set seed
 window.seed = (() => {
@@ -37,6 +38,7 @@ window.world = {
     score: 0,
     waterHeight: block.vCount/2,
     dir: 0,
+    soundPlayed: true,
 
     curve: {
         a: ((block.vCount-1)/2)*block.s, // height of the curves;
@@ -118,6 +120,17 @@ modeSelect.onchange = () => {
 infoBtns.forEach(infoBtn => {
     infoBtn.onclick = () => infosModal.classList.toggle("hidden");
 })
+soundBtn.onclick = () => {
+    world.soundPlayed = !world.soundPlayed;
+    if (world.soundPlayed) {
+        document.querySelector(".sound-on").className = "sound-on"
+        document.querySelector(".sound-muted").className = "sound-muted hidden"
+    } else {
+        document.querySelector(".sound-on").className = "sound-on hidden"
+        document.querySelector(".sound-muted").className = "sound-muted"
+        if (actualMusic) actualMusic.pause();
+    }
+};
 
 /* ---------------------------------- MUSIC --------------------------------- */
 let actualMusic;
