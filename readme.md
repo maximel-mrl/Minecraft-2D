@@ -10,3 +10,5 @@ The terrain is generated using multiple sinusoidal functions. By adding multiple
 - Every generation uses the same random functions just with some multiplier so it's not all the same
 - Monster are the exception, they only use `Math.random()`
 - to obtain the "randomness" 7 curves are used
+## Demo :
+[projects.maxime-morel.xyz/minecraft-2d](https://projects.maxime-morel.xyz/minecraft-2d)
