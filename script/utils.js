@@ -6,7 +6,7 @@ export function sinRnd(i) { // (star of the show) return a number between 0 and 
 }
 
 export function drawBlock(img, x, y, Ymul=1) {
-    ctx.drawImage(img, 0, 0, block.imgS, block.imgS, x, y + (1-Ymul)*block.s, block.s, block.s*Ymul);
+    ctx.drawImage(img, x, y + (1-Ymul)*block.s, block.s, block.s*Ymul);
     // draw image full: imgSRC, imgcropStart x-y, imgcropEnd x-y, posX, posY, SizeX, sizeY  
 }
 

@@ -98,11 +98,6 @@ assets.forEach((asset) => { // import all assets
     }
 });
 
-// wait for assets load to start updating
-window.onload = () => {
-    block["imgS"] = block.dirt.naturalWidth;
-    update();
-}
 
 window.onresize = () => {
     canvas.width = document.body.clientWidth;
@@ -183,3 +178,6 @@ document.addEventListener("keyup", ({key}) => {
             break;
     }
 })
+
+
+update(); // start updates
