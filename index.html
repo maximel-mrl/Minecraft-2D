@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="stylesheet/style.css">
 </head>
 <body>
+    <div class="mobile-controls">
+        <button onclick="key()"><img src="assets/images/arrow-left.jpg" alt="left btn"></button>
+        <button onclick="key()"><img src="assets/images/jump.jpg" alt="jump btn"></button>
+        <button onclick="key()"><img src="assets/images/arrow-right.jpg" alt="right btn"></button>
+    </div>
     <div class="mode-container">
         <label for="game-mode">Game mode</label>
         <select name="game-mode" id="mode">
@@ -22,10 +27,10 @@
         Score: <i class="score">0</i>
     </div>
     <div class="info-container">
-        <button class="round-btn toggle-info">i</button>
+        <button class="button round-btn toggle-info">i</button>
     </div>
     <div class="sound-container">
-        <button class="round-btn toggle-sound">
+        <button class="button round-btn toggle-sound">
             <img class="sound-muted hidden" src="assets/images/sound-muted.png" alt="sound muted">
             <img class="sound-on" src="assets/images/sound-on.png" alt="sound active">
         </button>
@@ -59,7 +64,7 @@
                     </p>
                 </section>
             </article>
-            <button class="toggle-info">Go back</button>
+            <button class="button toggle-info">Go back</button>
         </section>
     </div>
     <div class="modal game-over hidden">
@@ -69,9 +74,9 @@
         </h3>
         <div class="seed">
             <input type="number" placeholder="Set seed (blank = random)">
-            <button>Same seed</button>
+            <button class="button">Same seed</button>
         </div>
-        <button class="respawn">Respawn</button>
+        <button class="button respawn">Respawn</button>
     </div>
     <div class="modal hidden" id="aspect-alert">
         <img src="assets/images/landscape.gif" alt="phone rotating to landscape">

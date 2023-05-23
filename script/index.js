@@ -12,6 +12,7 @@ const infoBtns = document.querySelectorAll(".toggle-info");
 const infosModal = document.querySelector(".infos");
 const soundBtn = document.querySelector(".toggle-sound");
 const aspectAlertModal = document.querySelector("#aspect-alert");
+const mobileControls = document.querySelector(".mobile-controls")
 
 //set seed
 window.seed = (() => {
@@ -101,6 +102,8 @@ assets.forEach((asset) => { // import all assets
 window.addEventListener("resize", handleResize);
 window.addEventListener("orientationchange", handleResize); // on iphone orientation change don't trigger resize listener so listen for
 function handleResize() {
+    const mobileAgents = [ /android/i, /webos/i, /iphone/i, /ipad/i, /ipod/i, /blackberry/i, /windows phone/i ];
+    const userAgent = navigator.userAgent;
     const width = window.innerWidth;
     const height = window.innerHeight;
     const aspect = width / height;
@@ -113,6 +116,10 @@ function handleResize() {
     canvas.width = width;
     canvas.height = height;
     block.s = (canvas.height*0.55)/block.vCount;
+
+    // mobileControls.style.display = "none";
+    if (!mobileAgents.find(agent => userAgent.match(agent))) return;
+    mobileControls.style.display = "block";
 }
 handleResize(); // canvas set size
 
