@@ -4,8 +4,6 @@ import { playAudio, toFloatRange } from "./utils.js";
 
 // created canvas
 window.canvas = document.createElement("canvas");
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
     document.body.appendChild(canvas);
 window.ctx = canvas.getContext("2d");
 // get html element
@@ -13,6 +11,7 @@ const modeSelect = document.querySelector("#mode");
 const infoBtns = document.querySelectorAll(".toggle-info");
 const infosModal = document.querySelector(".infos");
 const soundBtn = document.querySelector(".toggle-sound");
+const aspectAlertModal = document.querySelector("#aspect-alert");
 
 //set seed
 window.seed = (() => {
@@ -99,10 +98,23 @@ assets.forEach((asset) => { // import all assets
 });
 
 
-window.onresize = () => {
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
+window.addEventListener("resize", handleResize);
+window.addEventListener("orientationchange", handleResize); // on iphone orientation change don't trigger resize listener so listen for
+function handleResize() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const aspect = width / height;
+    if (aspect < 1) {
+        aspectAlertModal.className = "modal";
+        return;
+    }
+    aspectAlertModal.className = "modal hidden";
+
+    canvas.width = width;
+    canvas.height = height;
+    block.s = (canvas.height*0.55)/block.vCount;
 }
+handleResize(); // canvas set size
 
 // change game mode
 modeSelect.onchange = () => {

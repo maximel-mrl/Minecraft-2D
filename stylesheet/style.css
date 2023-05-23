@@ -114,7 +114,7 @@ input:focus, select:focus {
     z-index: 5;
 }
 .modal.hidden {
-    display: none;
+    display: none !important;
 }
 
 
@@ -241,4 +241,19 @@ input:focus, select:focus {
 .content img {
     display: block;
     margin: 0.5em auto;
+}
+
+#aspect-alert {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    background-image: url("../assets/images/dirt-bg.webp");
+    background-size: cover;
+    overflow: auto;
+    text-align: center;
+}
+#aspect-alert img {
+    width: 10em;
 }
