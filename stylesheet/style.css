@@ -260,14 +260,43 @@ input:focus, select:focus {
 
 .mobile-controls {
     display: none;
+    width: 0;
+    height: 0;
+    z-index: 3;
+}
+.mobile-controls, .mobile-controls * {
+    user-select: none;
+}
+
+.mobile-controls img {
+    height: 4em;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+    opacity: 0.5;
 }
 
 .mobile-controls button {
     position: fixed;
     border: none;
-    padding: none;
-    margin: none;
+    margin: 0;
+    padding: 0;
     background: none;
-    width: 1.5em;
-    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+}
+
+.left {
+    left: 0.5em;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.right {
+    right: 0.5em;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.jump {
+    left: 50%;
+    bottom: 1em;
+    transform: translateX(-50%);
 }

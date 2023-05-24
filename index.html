@@ -11,9 +11,9 @@
 </head>
 <body>
     <div class="mobile-controls">
-        <button onclick="key()"><img src="assets/images/arrow-left.jpg" alt="left btn"></button>
-        <button onclick="key()"><img src="assets/images/jump.jpg" alt="jump btn"></button>
-        <button onclick="key()"><img src="assets/images/arrow-right.jpg" alt="right btn"></button>
+        <button class="ctrl-btn left" data-key="ArrowLeft"><img src="assets/images/arrow-left.jpg" alt="left btn" draggable="false"></button>
+        <button class="ctrl-btn jump" data-key="ArrowUp"><img src="assets/images/jump.jpg" alt="jump btn" draggable="false"></button>
+        <button class="ctrl-btn right" data-key="ArrowRight"><img src="assets/images/arrow-right.jpg" alt="right btn" draggable="false"></button>
     </div>
     <div class="mode-container">
         <label for="game-mode">Game mode</label>
@@ -80,7 +80,7 @@
     </div>
     <div class="modal hidden" id="aspect-alert">
         <img src="assets/images/landscape.gif" alt="phone rotating to landscape">
-        <h2 class="h1">Please use landscape mode !</h2>
+        <h2 class="h2">Please use landscape mode !</h2>
     </div>
     <p class="cp">© 2023 - Maxime Morel</p>
     <script src="script/index.js" type="module"></script>

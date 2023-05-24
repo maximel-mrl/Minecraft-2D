@@ -6,6 +6,7 @@ const finalScoreTxt = gameOverModal.querySelector(".final-score > i");
 const seedInput = gameOverModal.querySelector(".seed input");
 const seedBtn = gameOverModal.querySelector(".seed button");
 const respawnBtn = gameOverModal.querySelector(".respawn");
+const mobileControls = document.querySelector(".mobile-controls");
 
 
 export function updateScore() {

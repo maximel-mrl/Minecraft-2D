@@ -12,7 +12,8 @@ const infoBtns = document.querySelectorAll(".toggle-info");
 const infosModal = document.querySelector(".infos");
 const soundBtn = document.querySelector(".toggle-sound");
 const aspectAlertModal = document.querySelector("#aspect-alert");
-const mobileControls = document.querySelector(".mobile-controls")
+const mobileControls = document.querySelector(".mobile-controls");
+const controlBtns = mobileControls.querySelectorAll(".ctrl-btn");
 
 //set seed
 window.seed = (() => {
@@ -117,7 +118,7 @@ function handleResize() {
     canvas.height = height;
     block.s = (canvas.height*0.55)/block.vCount;
 
-    // mobileControls.style.display = "none";
+    mobileControls.style.display = "none";
     if (!mobileAgents.find(agent => userAgent.match(agent))) return;
     mobileControls.style.display = "block";
 }
@@ -169,7 +170,17 @@ setTimeout(() => {
 
 
 /* ----------------------------- INPUT LISTENING ---------------------------- */
-document.addEventListener("keydown", ({key}) => {
+controlBtns.forEach(controlBtn => {
+    controlBtn.addEventListener("touchstart", () => keydown({ key: controlBtn.getAttribute("data-key") }));
+    controlBtn.addEventListener("touchend", () => keyup({ key: controlBtn.getAttribute("data-key") }));
+    controlBtn.addEventListener("touchcancel", () => keyup({ key: controlBtn.getAttribute("data-key") }));
+})
+
+document.addEventListener("keydown", keydown)
+document.addEventListener("keyup", keyup)
+
+function keydown({key}) {
+    console.log(key)
     switch (key) {
         case "ArrowRight":
             hero.movment = "right";
@@ -183,20 +194,21 @@ document.addEventListener("keydown", ({key}) => {
             hero.jump = true;
             break;
     }
-})
-document.addEventListener("keyup", ({key}) => {
+}
+
+function keyup({key}) {
+    console.log(key)
     world.dir = 0;
     switch (key) {
         case "ArrowRight":
             if (hero.movment != "right") return;
-            hero.movment = false; 
+            hero.movment = false;
             break;
         case "ArrowLeft":
             if (hero.movment != "left") return;
-            hero.movment = false; 
+            hero.movment = false;
             break;
     }
-})
-
+}
 
 update(); // start updates
