@@ -45,6 +45,7 @@ body {
     /* background-size: cover; */
     color: white;
     text-shadow: 0.1em 0.1em 0 #3d3d3d;
+    cursor: pointer;
 }
 .button:hover {
     background-image: url("../assets/images/button-bg-hover.jpg");
@@ -216,6 +217,7 @@ input:focus, select:focus {
     justify-content: center;
     flex-shrink: 0;
     gap: 3em;
+    padding: 1em;
 }
 
 .content .h1 {

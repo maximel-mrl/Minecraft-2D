@@ -82,7 +82,7 @@
         <img src="assets/images/landscape.gif" alt="phone rotating to landscape">
         <h2 class="h2">Please use landscape mode !</h2>
     </div>
-    <p class="cp">© 2023 - Maxime Morel</p>
+    <p class="cp">© <?= date("Y") ?> - Maxime Morel</p>
     <script src="script/index.js" type="module"></script>
 </body>
 </html>
